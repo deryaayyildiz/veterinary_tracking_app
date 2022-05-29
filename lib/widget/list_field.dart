@@ -4,10 +4,12 @@ class ListField extends StatefulWidget {
   List<String> list;
   var setDropdownValue;
   var getDropdownValue;
+  String text;
   ListField({
     required this.list,
     required this.setDropdownValue,
     required this.getDropdownValue,
+    required this.text,
   });
 
   @override
@@ -20,7 +22,8 @@ class _ListFieldState extends State<ListField> {
     return Container(
       color: Colors.white,
       width: 150,
-      child: Row(
+      child: Row(mainAxisAlignment:
+               MainAxisAlignment.spaceEvenly,
         children: [
           DropdownButton<String>(
             value: widget.getDropdownValue(),
@@ -37,11 +40,14 @@ class _ListFieldState extends State<ListField> {
               });
             },
             items: widget.list.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
+              return DropdownMenuItem<String>( 
+                
                 value: value,
                 child: Text(value),
               );
             }).toList(),
+          ),
+          Text(widget.text , style: TextStyle(color: Colors.blue[900], fontWeight: FontWeight.bold)
           ),
         ],
       ),

@@ -3,13 +3,20 @@ import 'package:flutter/services.dart';
 import 'package:vetlogin/screen/selectionScreen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formPass = GlobalKey<FormState>();
+  final _formUser = GlobalKey<FormState>();
+
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+   bool isHidden = true;
+  togglePasswordVisibility() => setState(() => isHidden = !isHidden);
+
   bool isRememberMe = false;
   List<String> items = [];
 
@@ -35,24 +42,39 @@ class _LoginScreenState extends State<LoginScreen> {
                       offset: Offset(0, 2))
                 ]),
             height: 60,
-            child: const TextField(
-              keyboardType: TextInputType.emailAddress,
-              style: TextStyle(color: Colors.black87),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14),
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: Color(0xff2c2772),
-                  ),
-                  hintText: 'E-mail',
-                  hintStyle: TextStyle(color: Colors.black38)),
+            child: Form(
+              key: _formUser,
+              child: TextFormField(
+                obscureText: false,
+                controller: username,
+                keyboardType: TextInputType.emailAddress,
+                style: TextStyle(color: Colors.black87),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(top: 14),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Color(0xff2c2772),
+                    ),
+                    hintText: 'E-mail',
+                    hintStyle: TextStyle(color: Colors.black38)),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '   Lütfen bir kullanıcı adınızı giriniz';
+                  } else if (value.length < 4) {
+                    return "   Kullanıcı adı en az 6 karakter olmalıdır";
+                  } else if (value.length > 15) {
+                    return "   Kullanıcı adı 15 karakterden uzun olmamalıdır";
+                  }
+                  return null;
+                },
+              ),
             ),
           )
         ]);
   }
 
-  Widget buildPassword() {
+  Widget buildPassword(isHidden) {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -74,18 +96,40 @@ class _LoginScreenState extends State<LoginScreen> {
                       offset: Offset(0, 2))
                 ]),
             height: 60,
-            child: const TextField(
-              obscureText: true,
-              style: TextStyle(color: Colors.black87),
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14),
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Color(0xff2c2772),
-                  ),
-                  hintText: 'Şifre',
-                  hintStyle: TextStyle(color: Colors.black38)),
+            child: Form(
+              key: _formPass,
+              child: TextFormField(
+                obscureText: true,
+                style: TextStyle(color: Colors.black87),
+                controller: password,
+               //    obscureText: isHidden,
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                                    splashColor: Colors.transparent,
+                                    icon: isHidden
+                                        ? Icon(Icons.visibility_off)
+                                        : Icon(Icons.visibility),
+                                    onPressed: togglePasswordVisibility,
+                                  ),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(top: 14),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: Color(0xff2c2772),
+                    ),
+                    hintText: 'Şifre',
+                    hintStyle: TextStyle(color: Colors.black38)),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Lütfen bir parolanızı giriniz';
+                  } else if (value.length < 4) {
+                    return "Şifre en az 6 karakter olmalıdır";
+                  } else if (value.length > 15) {
+                    return "Şifre 15 karakterden uzun olmamalıdır";
+                  }
+                  return null;
+                },
+              ),
             ),
           )
         ]);
@@ -163,12 +207,27 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.push(
-            this.context,
-            MaterialPageRoute(
-              builder: (context) => SelectionScreen(items),
-            ),
-          );
+          bool passflag = false;
+          bool userflag = false;
+          if (_formPass.currentState!.validate())
+            {
+              passflag = true;
+            }
+          else
+            {print("_formPass.currentState true");}
+          if (_formUser.currentState!.validate()) {
+            userflag = true;
+          } else {
+            print("_formUser.currentState true");
+          }
+          if (userflag && passflag) {
+            Navigator.push(
+              this.context,
+              MaterialPageRoute(
+                builder: (context) => SelectionScreen(items),
+              ),
+            );
+          }
         },
         child: const Text(
           'GİRİŞ YAP',
@@ -190,6 +249,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool passflag;
+    bool userflag;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mastitis Tahlil Uygulaması'),
@@ -230,7 +291,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 15),
                       buildEmail(),
                       const SizedBox(height: 15),
-                      buildPassword(),
+                      buildPassword(true),
                       const SizedBox(height: 20),
                       buildRememberCb(),
                       const SizedBox(height: 30),

@@ -1,4 +1,4 @@
-#Sat May 28 19:22:13 TRT 2022
+#Sun May 29 13:14:42 TRT 2022
 base.0=C\:\\projeler\\veterinary_tracking_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

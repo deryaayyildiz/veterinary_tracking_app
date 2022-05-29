@@ -130,6 +130,7 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
                                 controller: analysisKind,
                               ),
                             ),
+                            SizedBox(height: 10),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -137,7 +138,7 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    ListField(
+                                    ListField(text: "Lob 1",
                                         list: ["Seç", "1", "2", "3", "4", "5"],
                                         setDropdownValue: setDropLobOne,
                                         getDropdownValue: getDropLobOne),
@@ -145,21 +146,22 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
                                     //   text: "1. Lob ",
                                     //   control: lobOne,
                                     // ),
-                                    ListField(
+                                    ListField(text: "Lob 2",
                                         list: ["Seç", "1", "2", "3", "4", "5"],
                                         setDropdownValue: setDropLobTwo,
                                         getDropdownValue: getDropLobTwo),
                                   ],
                                 ),
+                                SizedBox(height: 10),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    ListField(
+                                    ListField(text: "Lob 3",
                                         list: ["Seç", "1", "2", "3", "4", "5"],
                                         setDropdownValue: setDropLobThree,
                                         getDropdownValue: getDropLobThree),
-                                    ListField(
+                                    ListField(text: "Lob 4",
                                         list: ["Seç", "1", "2", "3", "4", "5"],
                                         setDropdownValue: setDropLobFour,
                                         getDropdownValue: getDropLobFour),
@@ -169,11 +171,14 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
                             ),
                             buildLoginBtn(),
                             Text(
+                              
                               average_data.toString(),
-                              style: TextStyle(
-                                  color: average_data < 5
+                              style: TextStyle( backgroundColor: average_data < 3
                                       ? Colors.green
-                                      : Colors.red),
+                                      : Colors.red,
+
+                                  color: Colors.white,
+                                  fontSize: 20),
                             )
                           ],
                         ),
