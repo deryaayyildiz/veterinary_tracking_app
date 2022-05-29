@@ -111,6 +111,22 @@ class _ListScreenState extends State<ListScreen> {
           setState(() {});
         },
       ),
+          TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+        ),
+        
+        child: _getTitleItemWidget(
+            'Tarih ' +
+                (sortType == sortMovement ? (isAscending ? '↓' : '↑') : ''),
+            100),
+        onPressed: () { 
+          sortType = sortMovement;
+          mastitisSort(isAscending, widget.items);
+          isAscending = !isAscending;
+          setState(() {});
+        },
+      ),
      
       
     ];
@@ -147,6 +163,12 @@ class _ListScreenState extends State<ListScreen> {
         Container(
           child: Text(widget.items[index].mastitisValue.toString()),
           width: 100,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),Container(
+          child: Text(widget.items[index].dateTime.toString()),
+          width: 150,
           height: 52,
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
           alignment: Alignment.centerLeft,

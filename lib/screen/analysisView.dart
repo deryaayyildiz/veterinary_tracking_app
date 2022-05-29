@@ -221,9 +221,10 @@ final _formfarm = GlobalKey<FormState>();
         value += double.parse(e["ucuncu_lob"]);
         value += double.parse(e["dorduncu_lob"]);
         value = value / 4;
-
+print(e["transacation_date"].toString());
         animalList.add(Data(
-            dateTime: e["transaction_date"].toString(),
+            dateTime: e["transacation_date"].toString(),
+
             analysisKind: e["hastalik_turu"].toString(),
             farmName: e["ciftlik_isim"].toString(),
             mastitisValue: value,

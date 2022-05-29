@@ -20,10 +20,6 @@
         "source": "C:\\projeler\\veterinary_tracking_app\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\projeler\\veterinary_tracking_app\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
-        "source": "C:\\projeler\\veterinary_tracking_app\\android\\app\\src\\main\\res\\drawable\\launch_background.xml"
-    },
-    {
         "merged": "C:\\projeler\\veterinary_tracking_app\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "C:\\projeler\\veterinary_tracking_app\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     }

@@ -4,6 +4,7 @@ class Data {
   String farmName;
   String analysisKind;
   double mastitisValue;
+  
   Data(
       {required this.dateTime,
       required this.animalId,
