@@ -10,7 +10,13 @@ class AnaliysisInput extends StatefulWidget {
 }
 
 class _AnaliysisInputState extends State<AnaliysisInput> {
+  final _formfarm = GlobalKey<FormState>();
+  final _formanimal = GlobalKey<FormState>();
+  final _formanalysis = GlobalKey<FormState>();
+  
+  
   String dropLobOne = "Seç";
+
 
   setDropLobOne(value) => setState(() => dropLobOne = value);
   getDropLobOne() => dropLobOne;
@@ -82,8 +88,18 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
                             ),
                             Container(
                               color: Colors.white,
-                              child: TextField(
+                              child: Form(
+                              key:_formfarm,
+                              child: TextFormField(
                                 controller: farmname,
+                                validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Lütfen çiftlik adı giriniz';
+                                } else  {
+                        
+                                return null;}
+                              },
+                              ),
                               ),
                             ),
                           ],
@@ -104,9 +120,20 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
                             ),
                             Container(
                               color: Colors.white,
-                              child: TextField(
+                              child: Form(
+                              key:_formanimal,
+                              
+                              child: TextFormField(
                                 controller: animalId,
+                                validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Lütfen hayvan id giriniz';
+                                } else  {
+                        
+                                return null;}
+                              },
                               ),
+                              )
                             ),
                           ],
                         ),
@@ -126,8 +153,19 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
                             ),
                             Container(
                               color: Colors.white,
-                              child: TextField(
+                             child: Form(
+                              key:_formanalysis,
+                              
+                              child: TextFormField(
                                 controller: analysisKind,
+                                validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Lütfen tahlil türü giriniz';
+                                } else  {
+                        
+                                return null;}
+                              },
+                              ),
                               ),
                             ),
                             SizedBox(height: 10),
@@ -169,8 +207,9 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
                                 )
                               ],
                             ),
-                            buildLoginBtn(),
-                            Text(
+                            buildInputBtn(),
+                   
+                            Text( 
                               
                               average_data.toString(),
                               style: TextStyle( backgroundColor: average_data < 3
@@ -198,15 +237,36 @@ class _AnaliysisInputState extends State<AnaliysisInput> {
     print("object");
   }
 
-  Widget buildLoginBtn() {
+  Widget buildInputBtn() {
     return Container(
       padding: const EdgeInsets.symmetric(
         vertical: 15,
       ),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
+          onPressed: () {
+          bool farmflag = false;
+          bool animalflag = false;
+          bool analysisflag = false;
+          if (_formfarm.currentState!.validate())
+            {
+              farmflag = true;
+            }
+           else
+             {print("_formfarm.currentState true");}
+           if (_formanalysis.currentState!.validate()) {
+             analysisflag = true;
+           } else {
+             print("_formUser.currentState true");
+          }
+          if (_formanimal.currentState!.validate()) {
+             animalflag = true;
+           } else {
+             print("_formUser.currentState true");
+          }
+          if (farmflag && analysisflag && animalflag) {
           input();
+          }
         },
         child: Text(
           'Hesapla',
