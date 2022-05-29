@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     hintStyle: TextStyle(color: Colors.black38)),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Lütfen bir parolanızı giriniz';
+                    return 'Lütfen  parolanızı giriniz';
                   } else if (value.length < 4) {
                     return "Şifre en az 6 karakter olmalıdır";
                   } else if (value.length > 15) {

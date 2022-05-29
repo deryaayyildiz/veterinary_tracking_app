@@ -12,6 +12,11 @@ class SimpleDropDown extends StatefulWidget {
 }
 
 class _SimpleDropDownState extends State<SimpleDropDown> {
+
+final _formfarm = GlobalKey<FormState>();
+  final _formanimal = GlobalKey<FormState>();
+  final _formanalysis = GlobalKey<FormState>();
+
   List<Data> animalList = [];
   TextEditingController farmname = TextEditingController();
   TextEditingController animalId = TextEditingController();
@@ -61,10 +66,20 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
                                 ),
                               ),
                             ),
-                            Container(
+                          Container(
                               color: Colors.white,
-                              child: TextField(
+                              child: Form(
+                              key:_formfarm,
+                              child: TextFormField(
                                 controller: farmname,
+                                validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Lütfen çiftlik adı giriniz';
+                                } else  {
+                        
+                                return null;}
+                              },
+                              ),
                               ),
                             ),
                           ],
@@ -107,8 +122,19 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
                             ),
                             Container(
                               color: Colors.white,
-                              child: TextField(
+                             child: Form(
+                              key:_formanalysis,
+                              
+                              child: TextFormField(
                                 controller: analysisKind,
+                                validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Lütfen tahlil türü giriniz';
+                                } else  {
+                        
+                                return null;}
+                              },
+                              ),
                               ),
                             ),
                             buildLoginBtn()
@@ -135,8 +161,28 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
+          bool farmflag = false;
+          bool animalflag = false;
+          bool analysisflag = false;
+          if (_formfarm.currentState!.validate())
+            {
+              farmflag = true;
+            }
+           else
+             {print("_formfarm.currentState true");}
+           if (_formanalysis.currentState!.validate()) {
+             analysisflag = true;
+           } else {
+             print("_formUser.currentState true");
+          }
+        
+          
+          if (farmflag && analysisflag ) {
           listQuery();
+          }
         },
+          
+        
         child: Text(
           'Görüntüle',
           style: TextStyle(
@@ -151,6 +197,7 @@ class _SimpleDropDownState extends State<SimpleDropDown> {
             // <-- Radius
           ),
         ),
+        
       ),
     );
   }
