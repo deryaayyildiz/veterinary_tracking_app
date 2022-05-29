@@ -207,12 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
       width: double.infinity,
       child: ElevatedButton(
         
-        onPressed: () {  Navigator.push(
-              this.context,
-              MaterialPageRoute(
-                builder: (context) => SelectionScreen(items),
-              ),
-            );
+        onPressed: () {  
           bool passflag = false;
           bool userflag = false;
           if (_formPass.currentState!.validate())
