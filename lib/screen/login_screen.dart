@@ -194,10 +194,10 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Row(children: <Widget>[
         Theme(
           data: ThemeData(unselectedWidgetColor: Colors.white),
-          child: Checkbox(
+          child: Checkbox(// onay kutusu ekliyoruz
             value: isRememberMe,
-            checkColor: Colors.indigo,
-            activeColor: Colors.white,
+            checkColor: Colors.indigo,// tıklandığında onay ifadesinin rengini belirleyebiliyoruz.
+            activeColor: Colors.white,// tıklandığında arka plan rengini belirleyebiliyoruz.
             onChanged: (value) {
               setState(() {
                 isRememberMe = value!;
@@ -217,7 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
         vertical: 15,
       ),
       width: double.infinity,
-      child: ElevatedButton(
+      child: ElevatedButton( //giriş yap butonu için bir elevated button ekliyoruz.
         
         onPressed: () {  
           bool passflag = false;
@@ -236,7 +236,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (userflag && passflag) {
             Navigator.push(
               this.context,
-              MaterialPageRoute(
+              MaterialPageRoute(//ekranı plaforma uyarlanabilir bir geçişle değiştirir.
                 builder: (context) => SelectionScreen(items),
               ),
             );
@@ -251,7 +251,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         style: ElevatedButton.styleFrom(
           primary: Colors.white,
-          shape: RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(// kçşeleri yuvarlatılmış bir dikdörtgen çizmek için kullanıyoruz.
             borderRadius: BorderRadius.circular(15),
             // <-- Radius
           ),
@@ -277,7 +277,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/bg.png"),
+                    image: AssetImage("assets/bg.png"),// uygulamanın arka planını ekliyoruz.
                     fit: BoxFit.cover,
                   ),
                 ),
