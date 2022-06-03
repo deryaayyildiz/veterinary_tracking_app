@@ -38,6 +38,7 @@ dependencies:
   background_app_bar: ^2.0.1
   http:
   horizontal_data_table:
+  auto_route:
 
 
 dev_dependencies:

@@ -6,7 +6,7 @@ import 'package:vetlogin/screen/selectionScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
-  _LoginScreenState  => _LoginScreenState();
+  _LoginScreenState  createState()=> _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
