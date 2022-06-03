@@ -18,36 +18,39 @@ class _SelectionScreenState extends State<SelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false, //görüntülenen bir ekran klavyesi varsa, klavyenin üst üste gelmesini önlemek için gövde yeniden boyutlandırılabilir. 
+                                       //Burada klavye özelliği olmadığı için false değerini almakta
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
           child: Stack(
             children: <Widget>[
-              Center(
+              Center( // ortalamak için center widgetını kullanıyoruz.
                 child: Container(
-                  width: 600,
-                  height: 1000,
+                  width: 600, //genişlik belirtiyoruz
+                  height: 1000,//yükseklik belirtiyoruz.
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/bg.png"),
+                      image: AssetImage("assets/bg.png"),// arka plan resmini ekliyoruz.
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(), //kaydırılacak içerik olmadığında kaydırmayı devre dışı bırakan varsayılan davranışı geçersiz kılmaktadır.
                     padding: const EdgeInsets.symmetric(
                         horizontal: 25, vertical: 120),
-                    child: Column(
+                    child: Column( //Alt öğelerini dikey bir dizide görüntüleyen bir pencere öğesidir.
+
+
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         const SizedBox(height: 30),
                         SelectButton(
                           text: "Tahlil Görüntüle",
-                          function: openAnalysisView,
+                          function: openAnalysisView,// tahlil görüntüle butonuna basıldığında analiz görüntüle sayfasına ulaşması için fonksiyonumuz çalışıcaktır.
                         ),
                         SelectButton(
-                            text: "Tahlil Gir", function: openAnalisisInput)
+                            text: "Tahlil Gir", function: openAnalisisInput)//tahlil gir butonuna basıldığında tahlil gir sayfasına ulaşması için fonksiyonumuz çalışıcaktır.
                       ],
                     ),
                   ),
@@ -60,7 +63,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
     );
   }
 
-  void openAnalysisView() {
+  void openAnalysisView() {// fonksiyonumuz yönlendirme yapmaktadır
     Navigator.push(
       this.context,
       MaterialPageRoute(

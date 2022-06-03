@@ -13,10 +13,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formPass = GlobalKey<FormState>(); 
   final _formUser = GlobalKey<FormState>();
 
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController username = TextEditingController(); //kullanıcı ismini kontrol etmek için bir conroller tanımlıyoruz
+  TextEditingController password = TextEditingController();//kullanıcı şifresini kontrol etmek için bir conroller tanımlıyoruz
 
-   bool isHidden = true;
+   bool isHidden = true; //şifre kısmında gizli tutmak için bir değişken tanımlayıp değerini true olarak belirliyoruz.
   togglePasswordVisibility() => setState(() => isHidden = !isHidden);
 
   bool isRememberMe = false;

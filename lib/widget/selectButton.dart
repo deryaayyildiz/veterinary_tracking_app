@@ -20,7 +20,7 @@ class SelectButton extends StatelessWidget {
           },
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
+            child: Row(//yatay olarak yapılandırmak için kullanıyoruz.
               children: [
                 Icon(Icons.zoom_in, color: Colors.black87, size: 45),
                 Text(
@@ -35,7 +35,7 @@ class SelectButton extends StatelessWidget {
           ),
           style: ElevatedButton.styleFrom(
             primary: Colors.white,
-            shape: RoundedRectangleBorder(
+            shape: RoundedRectangleBorder( //yuvarlatışmış dikdörtgen ayarı için kullanmaktaayız.
               borderRadius: BorderRadius.circular(20),
               // <-- Radius
             ),

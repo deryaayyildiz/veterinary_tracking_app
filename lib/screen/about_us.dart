@@ -4,7 +4,7 @@ import 'package:vetlogin/widget/collection_items.dart';
 class Profil extends StatelessWidget {
   @override
   Widget build(BuildContext context){
-    return Scaffold(  appBar: AppBar(title: Text('Hakkımızda'),),
+    return Scaffold(  appBar: AppBar(title: Text('Hakkımızda'),), //Scaffold sınıfnın içinden appbar özelliğini barındırır.
       body: Container( decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/bg.png"),
@@ -15,11 +15,12 @@ class Profil extends StatelessWidget {
           children: [
             Column(
               children: [
-                CircleAvatar(
+                CircleAvatar(//Görüntü, daire şeklinde olacak şekilde kırpılacaktır.
+
                                   backgroundColor: Colors.white,
                                   radius: 130.0,
                                   child: CircleAvatar(
-                                    backgroundImage:   NetworkImage('https://uyg-ar.com/assets/img/team/team-7_600x600.jpg'),
+                                    backgroundImage:   NetworkImage('https://uyg-ar.com/assets/img/team/team-7_600x600.jpg'),//Bağlantı vererek resmi görüntüleyebiliyoruz.
                                     radius: 125.0,
                                   ),
                                 ),
@@ -30,10 +31,10 @@ class Profil extends StatelessWidget {
             Column(
           children: [
             CircleAvatar(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Colors.white, // arka planı belirlemekteyiz.
                               radius: 130.0,
                               child: CircleAvatar(
-                                backgroundImage:   NetworkImage('https://uyg-ar.com/assets/img/team/team-6_600x600.jpg',),
+                                backgroundImage:   NetworkImage('https://uyg-ar.com/assets/img/team/team-6_600x600.jpg',),//Bağlantı vererek resmi görüntüleyebiliyoruz.
                                 radius: 125.0,
                               ),
                             ),
